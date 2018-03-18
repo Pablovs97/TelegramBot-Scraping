@@ -45,4 +45,4 @@ class Parser(object):
 		if not len(self.get_title()) :
 			return "No free book today."
 		else :
-			return [self.get_title()] + [self.get_abstract()] + ['\n'.join(self.get_points())]
+			return ['<b>' + self.get_title() + '</b>'] + [self.get_abstract()] + ['<i>' + '\n'.join(self.get_points()) + '</i>']
