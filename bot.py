@@ -12,7 +12,16 @@ class TelegramBot(object):
 
 	def start(self, bot, update):
 		self.listener(bot, update)
-		bot.sendMessage(chat_id=update.message.chat_id, text='Bienvenido')
+		bot.sendMessage(chat_id=update.message.chat_id, text='Welcome, you can use the following commands:')
+		bot.sendMessage(chat_id=update.message.chat_id, text='<b>/book</b> Today\'s book info.', parse_mode=ParseMode.HTML)
+		bot.sendMessage(chat_id=update.message.chat_id, text='<b>/link</b> Link to download the book.', parse_mode=ParseMode.HTML)
+		bot.sendMessage(chat_id=update.message.chat_id, text='<b>/help</b> Commands available.', parse_mode=ParseMode.HTML)
+
+	def help(self, bot, update):
+		self.listener(bot, update)
+		bot.sendMessage(chat_id=update.message.chat_id, text='<b>/book</b> Today\'s book info.', parse_mode=ParseMode.HTML)
+		bot.sendMessage(chat_id=update.message.chat_id, text='<b>/link</b> Link to download the book.', parse_mode=ParseMode.HTML)
+		bot.sendMessage(chat_id=update.message.chat_id, text='<b>/help</b> Commands available.', parse_mode=ParseMode.HTML)
 
 	def book(self, bot, update):
 		self.listener(bot, update)
@@ -36,6 +45,7 @@ class TelegramBot(object):
 		dispatcher.add_handler(listener_handler)
 
 		dispatcher.add_handler(CommandHandler("start", self.start))
+		dispatcher.add_handler(CommandHandler("help", self.link))
 		dispatcher.add_handler(CommandHandler("book", self.book))
 		dispatcher.add_handler(CommandHandler("link", self.link))
 
